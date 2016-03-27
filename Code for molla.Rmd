@@ -1,0 +1,136 @@
+---
+title: "AAPI Interest Survey Analysis"
+author: "Jemma"
+date: "March 13, 2016"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+I'm reading the data~ ^^
+```{r}
+data <- read.csv("/Users/cindella/Google Drive/AAPIData.csv")
+data[1]
+```
+
+Re-labelling columns~~ ><
+```{r}
+think <- data[2]
+#How often do you think about AAPI issues?
+bffdiscuss <- data[3]
+#How often to you discuss AAPI issues with your friends?
+knowledge <- data[4]
+#Rate how knowledgeable you are on AAPI issues
+issueinterest <- data[5]
+#What AAPI issues interest you?
+freq_petition <- data[6]
+#Please rate how frequently you do the following: [Signing a Paper Petition on an AAPI-related Issue]
+freq_meeting <- data[7]
+#Please rate how frequently you do the following: [Attending a meeting on AAPI-related issue]
+freq_event <- data[8]
+#Please rate how frequently you do the following: [Attending a rally or speech on AAPI-related issues]
+freq_gov <- data[9]
+#Please rate how frequently you do the following: [Contacting a government official regarding AAPI-related issues]
+freq_volunteer <- data[10]
+#Please rate how frequently you do the following: [Working or volunteering for AAPI-related causes]
+freq_group <- data[11]
+#Please rate how frequently you do the following: [Be an active member of a group that advocates for AAPI-related changes in policies]
+socialmedia <- data[12]
+#Do you use social media to engage in AAPI Issues?
+engage_like <- data[13]
+#If so, HOW often do you engage in AAPI issues? [Like or promote material related to AAPI issues]
+engage_vote <- data[14]
+#If so, HOW often do you engage in AAPI issues? [Encourage others to vote on a AAPI social/politcal issue]
+engage_post <- data[15]
+#If so, HOW often do you engage in AAPI issues? [Post your own thoughts/comments on AAPI issues]
+engage_repost <- data[16]
+#If so, HOW often do you engage in AAPI issues? [Repost content related to AAPI issues]
+engage_action <- data[17]
+#If so, HOW often do you engage in AAPI issues? [Encourage others to take action on AAPI issues that are important to you]
+engage_link <- data[18]
+#If so, HOW often do you engage in AAPI issues? [Post links to political stories/articles for others to read]
+engage_group <- data[19]
+#If so, HOW often do you engage in AAPI issues? [Belong to a group that is related to AAPI political/social issues or working to advance a cause]
+engage_follow <- data[20]
+#If so, HOW often do you engage in AAPI issues? [Follow elected officials, candidates for office and/or other public figures]
+age <- data[21]
+#Age
+gender <- data[22]
+#Gender
+student <- data[22]
+#Are you currently a student?
+```
+
+Creating composite scores
+```{r}
+data$AAPIinvolve <- (freq_petition + freq_meeting + freq_meeting + freq_event + freq_gov + freq_volunteer + freq_group)/6
+data$socialmedia <- (engage_like + engage_post + engage_vote + engage_follow + engage_action + engage_repost + engage_group + engage_link)/8
+summary(data$AAPIinvolve)
+```
+
+
+CORRELATION~~~~~~~~~
+for t test: #1st_var = 2nd_estimate_std_value x (2nd_var) + intercept_estimate_std
+
+
+Involvement and social media engagement
+```{r}
+linear <- lm(as.matrix(AAPIinvolve) ~ as.matrix(socialmedia), data, na.action = na.exclude)
+summary(linear)
+#AAPIinvolve=1.0489(socialmedia)-0.4620 ***
+```
+
+AAPI involvement and age 
+```{r}
+linear <- lm(as.matrix(AAPIinvolve) ~ as.matrix(age), data, na.action = na.exclude)
+summary(linear)
+#not significant
+```
+
+AAPI involvement and gender 
+```{r}
+linear <- aov(as.matrix(AAPIinvolve) ~ as.matrix(gender), data, na.action = na.exclude)
+summary(linear)
+#not significant 
+```
+
+Social media and age
+```{r}
+linear <- lm(as.matrix(age) ~ as.matrix(socialmedia), data, na.action = na.exclude)
+summary(linear)
+#age=0.7275(socialmedia)+16.9424 *
+```
+
+Thinking about issues and talking with friends
+```{r}
+linear <- lm(as.matrix(think) ~ as.matrix(bff.discuss), data, na.action = na.exclude)
+summary(linear)
+#think=0.6884(bff.discuss)+1.8961 ***
+```
+
+Talking wth friends and knowledge
+```{r}
+linear <- lm(as.matrix(bff.discuss) ~ as.matrix(knowledge), data, na.action = na.exclude)
+summary(linear)
+#bff.discuss=0.4326(knowledge)+2.0411 **
+```
+
+Thinking and knowledge 
+```{r}
+linear <- lm(as.matrix(knowledge) ~ as.matrix(think), data, na.action = na.exclude)
+summary(linear)
+#knowledge=0.8067(think)+0.2133 ***
+```
+
+Talking with friends and social media engagement
+```{r}
+linear <- lm(as.matrix(bff.discuss) ~ as.matrix(socialmedia), data, na.action = na.exclude)
+summary(linear)
+#bff.discuss=0.5570(socialmedia)+2.0897 *
+```
+
+Talking with friends and age
+```{r}
+```
