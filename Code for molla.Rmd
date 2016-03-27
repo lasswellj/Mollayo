@@ -75,11 +75,32 @@ CORRELATION~~~~~~~~~
 for t test: #1st_var = 2nd_estimate_std_value x (2nd_var) + intercept_estimate_std
 
 
-Involvement and social media engagement
+~Involvement and social media engagement
 ```{r}
 linear <- lm(as.matrix(AAPIinvolve) ~ as.matrix(socialmedia), data, na.action = na.exclude)
 summary(linear)
 #AAPIinvolve=1.0489(socialmedia)-0.4620 ***
+```
+
+~Thinking and knowledge 
+```{r}
+linear <- lm(as.matrix(knowledge) ~ as.matrix(think), data, na.action = na.exclude)
+summary(linear)
+#knowledge=0.8067(think)+0.2133 ***
+```
+
+~Talking with friends and thinking about issues
+```{r}
+linear <- lm(as.matrix(think) ~ as.matrix(bff.discuss), data, na.action = na.exclude)
+summary(linear)
+#think=0.6884(bff.discuss)+1.8961 ***
+```
+
+~Talking with friends and social media engagement
+```{r}
+linear <- lm(as.matrix(bff.discuss) ~ as.matrix(socialmedia), data, na.action = na.exclude)
+summary(linear)
+#bff.discuss=0.5570(socialmedia)+2.0897 *
 ```
 
 Involvement and age 
@@ -103,25 +124,11 @@ summary(linear)
 #age=0.7275(socialmedia)+16.9424 *
 ```
 
-Talking with friends and thinking about issues
-```{r}
-linear <- lm(as.matrix(think) ~ as.matrix(bff.discuss), data, na.action = na.exclude)
-summary(linear)
-#think=0.6884(bff.discuss)+1.8961 ***
-```
-
 Talking wth friends and knowledge
 ```{r}
 linear <- lm(as.matrix(bff.discuss) ~ as.matrix(knowledge), data, na.action = na.exclude)
 summary(linear)
 #bff.discuss=0.4326(knowledge)+2.0411 **
-```
-
-Talking with friends and social media engagement
-```{r}
-linear <- lm(as.matrix(bff.discuss) ~ as.matrix(socialmedia), data, na.action = na.exclude)
-summary(linear)
-#bff.discuss=0.5570(socialmedia)+2.0897 *
 ```
 
 Talking with friends and age
@@ -131,9 +138,3 @@ summary(linear)
 #not siginificant
 ```
 
-Thinking and knowledge 
-```{r}
-linear <- lm(as.matrix(knowledge) ~ as.matrix(think), data, na.action = na.exclude)
-summary(linear)
-#knowledge=0.8067(think)+0.2133 ***
-```
