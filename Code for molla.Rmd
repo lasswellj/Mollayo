@@ -82,14 +82,14 @@ summary(linear)
 #AAPIinvolve=1.0489(socialmedia)-0.4620 ***
 ```
 
-AAPI involvement and age 
+Involvement and age 
 ```{r}
 linear <- lm(as.matrix(AAPIinvolve) ~ as.matrix(age), data, na.action = na.exclude)
 summary(linear)
 #not significant
 ```
 
-AAPI involvement and gender 
+Involvement and gender 
 ```{r}
 linear <- aov(as.matrix(AAPIinvolve) ~ as.matrix(gender), data, na.action = na.exclude)
 summary(linear)
@@ -103,7 +103,7 @@ summary(linear)
 #age=0.7275(socialmedia)+16.9424 *
 ```
 
-Thinking about issues and talking with friends
+Talking with friends and thinking about issues
 ```{r}
 linear <- lm(as.matrix(think) ~ as.matrix(bff.discuss), data, na.action = na.exclude)
 summary(linear)
@@ -117,13 +117,6 @@ summary(linear)
 #bff.discuss=0.4326(knowledge)+2.0411 **
 ```
 
-Thinking and knowledge 
-```{r}
-linear <- lm(as.matrix(knowledge) ~ as.matrix(think), data, na.action = na.exclude)
-summary(linear)
-#knowledge=0.8067(think)+0.2133 ***
-```
-
 Talking with friends and social media engagement
 ```{r}
 linear <- lm(as.matrix(bff.discuss) ~ as.matrix(socialmedia), data, na.action = na.exclude)
@@ -133,4 +126,14 @@ summary(linear)
 
 Talking with friends and age
 ```{r}
+linear <- lm(as.matrix(bff.discuss) ~ as.matrix(age), data, na.action = na.exclude)
+summary(linear)
+#not siginificant
+```
+
+Thinking and knowledge 
+```{r}
+linear <- lm(as.matrix(knowledge) ~ as.matrix(think), data, na.action = na.exclude)
+summary(linear)
+#knowledge=0.8067(think)+0.2133 ***
 ```
