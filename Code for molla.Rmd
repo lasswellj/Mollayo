@@ -138,3 +138,10 @@ summary(linear)
 #not siginificant
 ```
 
+```{r}
+summary(as.matrix(age))
+summary(as.matrix(bff.discuss))
+summary(as.matrix(knowledge))
+summary(as.matrix(socialmedia))
+summary(as.matrix(think))
+```
