@@ -25,18 +25,31 @@ knowledge <- data[4]
 #Rate how knowledgeable you are on AAPI issues
 issueinterest <- data[5]
 #What AAPI issues interest you?
-freq_petition <- data[6]
-#Please rate how frequently you do the following: [Signing a Paper Petition on an AAPI-related Issue]
-freq_meeting <- data[7]
-#Please rate how frequently you do the following: [Attending a meeting on AAPI-related issue]
-freq_event <- data[8]
-#Please rate how frequently you do the following: [Attending a rally or speech on AAPI-related issues]
-freq_gov <- data[9]
-#Please rate how frequently you do the following: [Contacting a government official regarding AAPI-related issues]
-freq_volunteer <- data[10]
+
+```
+AAPI Activism Measure
+Please rate how frequently you do the following:
+```{r}
+data$freq_petition <- data[6]
+#Signing a Paper Petition on an AAPI-related Issue
+
+data$freq_meeting <- data[7]
+#Attending a meeting on AAPI-related issue
+
+data$freq_event <- data[8]
+#Attending a rally or speech on AAPI-related issues
+
+data$freq_gov <- data[9]
+#Contacting a government official regarding AAPI-related issues
+
+data$freq_volunteer <- data[10]
 #Please rate how frequently you do the following: [Working or volunteering for AAPI-related causes]
-freq_group <- data[11]
+
+data$freq_group <- data[11]
 #Please rate how frequently you do the following: [Be an active member of a group that advocates for AAPI-related changes in policies]
+```
+AAPI Social Media Activism Measure
+```{r}
 socialmedia <- data[12]
 #Do you use social media to engage in AAPI Issues?
 engage_like <- data[13]
@@ -55,6 +68,9 @@ engage_group <- data[19]
 #If so, HOW often do you engage in AAPI issues? [Belong to a group that is related to AAPI political/social issues or working to advance a cause]
 engage_follow <- data[20]
 #If so, HOW often do you engage in AAPI issues? [Follow elected officials, candidates for office and/or other public figures]
+```
+Demographic Data
+```{r}
 age <- data[21]
 #Age
 gender <- data[22]
@@ -69,7 +85,7 @@ data$AAPIinvolve <- (freq_petition + freq_meeting + freq_meeting + freq_event + 
 data$socialmedia <- (engage_like + engage_post + engage_vote + engage_follow + engage_action + engage_repost + engage_group + engage_link)/8
 summary(data$AAPIinvolve)
 ```
-
+Calculate reliability for composites*
 
 CORRELATION~~~~~~~~~
 for t test: #1st_var = 2nd_estimate_std_value x (2nd_var) + intercept_estimate_std
