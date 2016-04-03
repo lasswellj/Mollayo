@@ -9,13 +9,13 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-I'm reading the data~ ^^
+I'm reading the data~
 ```{r}
 data <- read.csv("/Users/cindella/Google Drive/AAPIData.csv")
 data[1]
 ```
 
-Re-labelling columns~~ ><
+Re-labelling columns~
 ```{r}
 think <- data[2]
 #How often do you think about AAPI issues?
@@ -63,7 +63,7 @@ student <- data[22]
 #Are you currently a student?
 ```
 
-Creating composite scores
+Creating composite scores~
 ```{r}
 data$AAPIinvolve <- (freq_petition + freq_meeting + freq_meeting + freq_event + freq_gov + freq_volunteer + freq_group)/6
 data$socialmedia <- (engage_like + engage_post + engage_vote + engage_follow + engage_action + engage_repost + engage_group + engage_link)/8
@@ -144,4 +144,5 @@ summary(as.matrix(bff.discuss))
 summary(as.matrix(knowledge))
 summary(as.matrix(socialmedia))
 summary(as.matrix(think))
+sd(as.matrix(age)) 
 ```
